@@ -20,6 +20,13 @@ const FormTareas = () => {
         setTareaInd('');
     }
 
+    const borrarTarea = (nTarea) =>{
+        // let tareasModificadas = tareas.filter((item) => {return item != nTarea});
+        let tareasModificadas = tareas.filter((item) => item != nTarea);
+        setTareas(tareasModificadas);
+
+    }
+gi
     return (
         <div>
             <Form className="container my-5" onSubmit={handleSubmit}>
@@ -31,7 +38,7 @@ const FormTareas = () => {
             </Form>
 
             <section className="container">
-                <ListaTareas arregloTareas={tareas}></ListaTareas>
+                <ListaTareas arregloTareas={tareas} borrarTarea={borrarTarea}></ListaTareas>
             </section>
         </div>
     );
