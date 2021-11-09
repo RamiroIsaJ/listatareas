@@ -26,7 +26,7 @@ const FormTareas = () => {
         setTareas(tareasModificadas);
 
     }
-gi
+
     return (
         <div>
             <Form className="container my-5" onSubmit={handleSubmit}>
