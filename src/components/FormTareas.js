@@ -1,17 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import ListaTareas from './ListaTareas';
 
 const FormTareas = () => {
+    let tareasLocalStorage = JSON.parse(localStorage.getItem('listaTareas')) || [];
     // crear los states
     const [tareaInd, setTareaInd] = useState('');
-    const [tareas, setTareas] = useState([]);
+    const [tareas, setTareas] = useState(tareasLocalStorage);
     
     // const altaTarea = (e) => {
     //    console.log(e.target.value);
         // guardar en un state
     //    setTareaInd(e.target.value);
     //}
+
+    // usar ciclo de vida de un componente
+    useEffect(()=>{
+        localStorage.setItem('listaTareas', JSON.stringify(tareas));
+    }, [tareas])
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -22,7 +28,7 @@ const FormTareas = () => {
 
     const borrarTarea = (nTarea) =>{
         // let tareasModificadas = tareas.filter((item) => {return item != nTarea});
-        let tareasModificadas = tareas.filter((item) => item != nTarea);
+        let tareasModificadas = tareas.filter((item) => item !== nTarea);
         setTareas(tareasModificadas);
 
     }
